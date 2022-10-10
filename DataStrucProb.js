@@ -1,6 +1,14 @@
 const prompt = require("prompt-sync")();
-console.log("1. RandomMinMax");
-    RandomMinMax();
+console.log("1. RandomMinMax, 2.PrimeFactors");
+let choice = parseInt(prompt("Enter The Choice : "))
+switch (choice) {
+    case 1:
+        RandomMinMax();
+        break;
+    case 2:
+       PrimeFactors() ;
+        break;
+}
              function RandomMinMax() {
                 let count = 0;
                 const number = [];
@@ -34,5 +42,28 @@ console.log("1. RandomMinMax");
                 }
                 console.log("Second Max is: " + secondMax);
                 console.log("Second Min is: " + secondMin);
+            }
+           function PrimeFactors() {
+                let count = 0;
+                let numberIsPrime = 0;
+                let result = [];
+                let number = parseInt(prompt("Enter number to get its Prime Factors : "));
+            
+                for (i = 2; i <= number; i++) {
+                    if (number % i == 0) {
+                        numberIsPrime = 1;
+                        for (j = 2; j <= i / 2; j++) {
+                            if (i % j == 0) {
+                                numberIsPrime = 0;
+                                break;
+                            }
+                        }
+                        if (numberIsPrime == 1) {
+                            result[count] = i;
+                            count++;
+                        }
+                    }
+                }
+                console.log(result);
             }
         
