@@ -1,5 +1,5 @@
 const prompt = require("prompt-sync")();
-console.log("1. RandomMinMax, 2.PrimeFactors");
+console.log("1. RandomMinMax, 2.PrimeFactors, 3.SameBdayMonth, 4.RepeatingNumbers");
 let choice = parseInt(prompt("Enter The Choice : "))
 switch (choice) {
     case 1:
@@ -8,6 +8,12 @@ switch (choice) {
     case 2:
        PrimeFactors() ;
         break;
+        case 3:
+            SameBirthDay();
+            break
+            case 4:
+                RepeatingNumber();
+            break;
 }
              function RandomMinMax() {
                 let count = 0;
@@ -66,4 +72,50 @@ switch (choice) {
                 }
                 console.log(result);
             }
+            function getMonthName(monthNumber) {
+                const date = new Date();
+                date.setMonth(monthNumber - 1);
+                return date.toLocaleString('en-US', { month: 'long' });
+            }
+            
+            function SameBirthDay() {
+                let monthsMap = new Map([
+                    [1, 0],
+                    [2, 0],
+                    [3, 0],
+                    [4, 0],
+                    [5, 0],
+                    [6, 0],
+                    [7, 0],
+                    [8, 0],
+                    [9, 0],
+                    [10, 0],
+                    [11, 0],
+                    [12, 0]
+                ]);
+                for (let i = 1; i <= 50; i++) {
+                    let randomMonth = Math.floor(Math.random() * 12 + 1);
+                    let count = monthsMap.get(randomMonth);
+                    monthsMap.set(randomMonth, count + 1);
+                }
+                monthsMap.forEach((values, keys) => {
+                    console.log(values + " Person have BirthDay in the month of " + getMonthName(keys));
+                })
+            }
+            
+function RepeatingNumber() {
+    let count = 0;
+    const number = [];
+    let start = parseInt(prompt("Starting Range : "));
+    let end = parseInt(prompt("Ending Range : "));
+    while (start <= end) {
+        if (start % 11 == 0) {
+            number[count] = start;
+            count++;
+        }
+        start++;
+    }
+    console.log('Repeating numbers are: ' + number);
+}
+
         
